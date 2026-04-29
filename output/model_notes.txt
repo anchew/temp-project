@@ -1,0 +1,29 @@
+Model notes
+
+Selected features:
+sttl, ct_state_ttl, dload, ct_dst_sport_ltm, dmean, rate, swin, dwin, ct_src_dport_ltm, ct_dst_src_ltm, stcpb, dtcpb, ct_src_ltm, ct_dst_ltm, ct_srv_src, ct_srv_dst, is_sm_ips_ports, sload, sinpkt, dpkts, proto, service, state
+The selected feature list has several traffic/state columns, which makes sense because attacks often change connection behavior.
+I avoided using attack_cat as a feature because it is basically another version of the answer.
+
+Feature comparison:
+Selected features: 23 features, F1 0.9598
+All non-leaking features: 42 features, F1 0.9636
+The selected features made the model simpler, but the full non-leaking feature set did a little better.
+This is still useful because it shows a real tradeoff instead of pretending feature selection always improves the score.
+
+Models:
+logistic regression, decision tree, random forest, extra trees
+Extra trees is the model outside the basic set.
+Best model: random_forest
+Best accuracy: 0.9433
+Best F1: 0.9598
+Weakest model: logistic_regression
+Weakest F1: 0.8848
+
+Note for report:
+Logistic regression underperformed compared to the tree models.
+That is not a failure by itself. It gives a useful comparison point.
+A reasonable explanation is that network traffic has nonlinear patterns, so tree models can split on different packet, byte, protocol, and timing behavior better than a simple linear model.
+Random forest being strongest makes sense because it uses many trees, so it is less dependent on one exact split of the data.
+Extra trees was close to random forest, which suggests tree ensembles fit this dataset better than the simpler baseline.
+Decision tree was also strong, but a single tree is usually easier to overfit than a forest.

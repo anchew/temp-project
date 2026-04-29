@@ -1,0 +1,81 @@
+Dataset notes
+
+Rows after dropping blank labels: 174,881
+Columns: 45
+Normal rows: 55,842
+Attack rows: 119,039
+Attack traffic is about 2.13 times the normal traffic.
+Label: 0 = normal, 1 = attack
+This is not one attack example. It is a mix of normal traffic and many attack examples.
+Since attacks are the larger class, accuracy by itself is not enough to talk about performance.
+F1 is useful here because it gives a better picture of precision and recall together.
+
+Attack category counts:
+attack_cat
+Normal            55218
+Generic           39433
+Exploits          32918
+Fuzzers           17914
+DoS               12082
+Reconnaissance    10340
+NaN                2046
+Analysis           1964
+Backdoor           1720
+Shellcode          1116
+Worms               130
+Generic and Exploits are the largest attack categories, so the attack side of the dataset is not evenly spread out.
+Worms is tiny compared to the other attack categories, which means the model probably gets much less practice on that type.
+
+Preprocessing:
+Dropped rows with blank labels.
+Filled number blanks with median.
+Filled text blanks with most common value.
+I would explain this as keeping rows instead of throwing away a lot of the dataset.
+Median is safer than mean here because traffic data can have large outliers.
+The label itself was not filled in because guessing the answer column would make the training less honest.
+
+Missing value columns:
+dpkts                4808
+ackdat               4765
+state                4333
+ct_dst_sport_ltm     4199
+service              3854
+ct_srv_dst           3492
+dbytes               3416
+synack               3251
+ct_state_ttl         3103
+sload                2333
+ct_flw_http_mthd     2063
+attack_cat           2046
+tcprtt               1937
+id                    840
+sloss                 792
+ct_ftp_cmd            770
+is_sm_ips_ports       766
+rate                  725
+ct_dst_src_ltm        675
+dmean                 660
+swin                  641
+trans_depth           621
+spkts                 615
+sjit                  598
+is_ftp_login          579
+dload                 572
+dttl                  534
+sbytes                533
+dwin                  522
+ct_src_ltm            520
+ct_srv_src            514
+dinpkt                500
+sinpkt                452
+sttl                  442
+dur                   439
+proto                 435
+smean                 426
+djit                  372
+dtcpb                 279
+dloss                 245
+ct_dst_ltm            234
+stcpb                 220
+ct_src_dport_ltm      208
+response_body_len     176

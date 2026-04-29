@@ -1,0 +1,11 @@
+Graph notes
+
+label_counts.png: normal vs attack count
+attack_categories.png: attack type counts
+protocol_counts.png: protocol use by label
+duration_by_label.png: connection duration by label
+bytes_by_label.png: total bytes by label
+correlation_heatmap.png: strongest numeric correlations
+These cover the rubric requirement for at least three visualizations.
+The duration and bytes graphs use a log scale because network traffic values can get very spread out.
+The correlation heatmap is mainly for feature selection, not for proving one feature explains the whole dataset.
