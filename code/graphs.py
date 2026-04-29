@@ -21,7 +21,7 @@ def make_plots(data, out_folder, target):
     add_labels(ax)
     save_plot(out_folder, "label_counts.png")
 
-    attack_counts = data["attack_cat"].fillna("Missing").value_counts().head(10)
+    attack_counts = data["attack_cat"].fillna("Missing").replace({"Reconnaissance": "Recon"}).value_counts().head(10)
     ax = attack_counts.plot(kind="bar", color=ATTACK_COLOR)
     ax.set_title("Attack Categories")
     ax.set_xlabel("Category")
